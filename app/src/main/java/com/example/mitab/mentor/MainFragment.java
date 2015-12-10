@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,7 +81,7 @@ public class MainFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
 
         // The number of Columns
-        mLayoutManager = new GridLayoutManager(this, 2);
+        mLayoutManager = new GridLayoutManager(getActivity(),2);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         mAdapter = new CatagoryAdapter();
