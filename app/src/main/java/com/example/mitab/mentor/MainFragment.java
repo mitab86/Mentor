@@ -1,10 +1,10 @@
 package com.example.mitab.mentor;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,8 +81,15 @@ public class MainFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
 
         // The number of Columns
-        mLayoutManager = new GridLayoutManager(getActivity(),2);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        if(getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+            mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        }
+        else{
+            mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 4));
+        }
+        //mLayoutManager = new GridLayoutManager(getActivity(),2);
+        //mRecyclerView.setLayoutManager(mLayoutManager);
+        getActivity().setTitle("Movie");
 
         mAdapter = new CatagoryAdapter();
         mRecyclerView.setAdapter(mAdapter);
