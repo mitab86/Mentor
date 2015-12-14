@@ -66,6 +66,13 @@ public class CatagoryAdapter extends RecyclerView.Adapter<CatagoryAdapter.MyView
         }
 
     }
+    public void delete(int i){
+        mItems.remove(i);
+        notifyItemRemoved(i);
+
+
+    }
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
@@ -102,9 +109,7 @@ public class CatagoryAdapter extends RecyclerView.Adapter<CatagoryAdapter.MyView
 
         @Override
         public void onClick(View v) {
-            //initialize context
-            Context context = itemView.getContext();
-            Toast.makeText(context,"item clicked at"+getAdapterPosition(),Toast.LENGTH_LONG).show();
+            delete(getAdapterPosition());
         }
     }
 }
