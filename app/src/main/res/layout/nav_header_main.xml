@@ -13,17 +13,13 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:src="@drawable/sample"
-        android:layout_marginLeft="24dp"
         app:border_color="#FFFFFF"
-        android:layout_marginBottom="10dp"
-        android:layout_centerVertical="true"
+        android:layout_above="@+id/username"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="24dp"
-        />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="match_parent"
@@ -31,12 +27,13 @@
         android:textSize="14sp"
         android:paddingBottom="4dp"
         android:id="@+id/username"
-        android:layout_above="@+id/email"
-        android:layout_alignLeft="@+id/profile_image"
-        android:layout_alignStart="@+id/profile_image"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="Mentor"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/email"
+        android:layout_marginTop="-1dp" />
 
     <TextView
         android:layout_width="wrap_content"
