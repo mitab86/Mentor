@@ -14,15 +14,27 @@ public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
         super(fm);
     }
 
+    // Returns the fragment to display for that page
     @Override
     public Fragment getItem(int position) {
-        return PageFragment.newInstance(position + 1);
+        switch (position){
+            case 0:
+                return PageFragment.newInstance(position + 1);
+            case 1:
+                return PageFragment2.newInstance(position + 1);
+            case 2:
+                return PageFragment3.newInstance(position + 1);
+        }
+        return null;
     }
 
+    // Returns total number of pages
     @Override
     public int getCount() {
         return PAGE_COUNT;
     }
+
+    // Returns the page title for the top indicator
     @Override
     public CharSequence getPageTitle(int position) {
         // Generate title based on item position
