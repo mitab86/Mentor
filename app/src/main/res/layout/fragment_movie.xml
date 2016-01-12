@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.mitab.mentor.MovieFragment">
+    tools:context=".Movies.MovieFragment">
 
     <com.astuetz.PagerSlidingTabStrip
         android:id="@+id/tabs"

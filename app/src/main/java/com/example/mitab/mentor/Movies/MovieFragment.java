@@ -1,15 +1,16 @@
-package com.example.mitab.mentor;
+package com.example.mitab.mentor.Movies;
 
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.example.mitab.mentor.Movies.SampleFragmentPagerAdapter;
+import com.example.mitab.mentor.R;
 
 
 /**

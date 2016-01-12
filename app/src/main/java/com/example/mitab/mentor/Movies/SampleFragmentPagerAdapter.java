@@ -1,8 +1,12 @@
-package com.example.mitab.mentor;
+package com.example.mitab.mentor.Movies;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.example.mitab.mentor.Movies.Pages.PageFragment;
+import com.example.mitab.mentor.Movies.Pages.PageFragment2;
+import com.example.mitab.mentor.Movies.Pages.PageFragment3;
 
 /**
  * Created by Mitab on 1/10/2016.

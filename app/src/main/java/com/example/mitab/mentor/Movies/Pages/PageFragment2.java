@@ -1,4 +1,4 @@
-package com.example.mitab.mentor;
+package com.example.mitab.mentor.Movies.Pages;
 
 
 import android.os.Bundle;
@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.mitab.mentor.R;
 
 
 /**
