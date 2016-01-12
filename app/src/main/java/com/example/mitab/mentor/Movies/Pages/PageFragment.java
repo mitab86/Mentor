@@ -42,7 +42,7 @@ public class PageFragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_page, container, false);
         //TextView movie = (TextView) view.findViewById(R.id.movie);
         //movie.setText("Fragment #" + mPage);
-        RequestQueue requestQueue=Volley.newRequestQueue(getActivity());
+        RequestQueue requestQueue=VolleySingleton.getsInstance().getRequestQueue();
         StringRequest request=new StringRequest(Request.Method.GET, "http://php.net/", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
