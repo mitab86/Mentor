@@ -46,7 +46,7 @@ public class AdapterToprated extends RecyclerView.Adapter<AdapterToprated.ViewHo
         movie currentMovie=listMovies.get(position);
         holder.movieTitle.setText(currentMovie.getTitle());
         holder.movieReleaseDate.setText(currentMovie.getReleasedate().toString());
-        holder.movieRating.setText(currentMovie.getVotecount());
+        holder.movieRating.setText(currentMovie.getAveragevote());
         String urlThumnail=currentMovie.getImage();
         if (urlThumnail!= null){
             imageLoader.get(urlThumnail, new ImageLoader.ImageListener() {

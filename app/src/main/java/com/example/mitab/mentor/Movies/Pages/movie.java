@@ -7,6 +7,7 @@ import java.util.Date;
  */
 public class movie {
     private long id;
+    private String averagevote;
     private String title;
     private Date releasedate;
     private String overview;
@@ -18,7 +19,7 @@ public class movie {
     public movie(){
 
     }
-    public movie(long id,String title,Date releasedate,String overview, String  votecount, String urlSimilar,String reviews,String image){
+    public movie(long id,String title,Date releasedate,String overview, String  votecount,String averagevote, String urlSimilar,String reviews,String image){
         this.id=id;
         this.image=image;
         this.overview=overview;
@@ -27,6 +28,7 @@ public class movie {
         this.title=title;
         this.urlSimilar=urlSimilar;
         this.votecount=votecount;
+        this.averagevote=averagevote;
     }
 
     public long getId(){
@@ -40,6 +42,12 @@ public class movie {
     }
     public void setOverview(String overview){
         this.overview=overview;
+    }
+    public String getAveragevote(){
+        return averagevote;
+    }
+    public void setAveragevote(String averagevote){
+        this.averagevote=averagevote;
     }
     public String getTitle(){
         return title;
@@ -83,6 +91,7 @@ public class movie {
         return "ID:" +id+
                 "Title:" +title+
                 "Date:" +releasedate+
+                "Avgvote"+averagevote+
                 "Overview" +overview+
                 "Votes:" +votecount+
                 "Poster" +image;

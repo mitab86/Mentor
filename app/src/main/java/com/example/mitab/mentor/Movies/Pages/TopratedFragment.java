@@ -130,7 +130,7 @@ public class TopratedFragment extends Fragment {
                     movie.setId(id);
                     movie.setTitle(title);
                     movie.setOverview(overview);
-                    movie.setVotecount(votecount);
+                    movie.setAveragevote(vote);
                     Date date=dateFormat.parse(release);
                     movie.setReleasedate(date);
                     movie.setImage(poster);
