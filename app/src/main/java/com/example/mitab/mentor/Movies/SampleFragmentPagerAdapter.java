@@ -3,17 +3,19 @@ package com.example.mitab.mentor.Movies;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.mitab.mentor.Movies.Pages.PageFragment;
 import com.example.mitab.mentor.Movies.Pages.PageFragment2;
 import com.example.mitab.mentor.Movies.Pages.PageFragment3;
+import com.example.mitab.mentor.Movies.Pages.TopratedFragment;
 
 /**
  * Created by Mitab on 1/10/2016.
  */
-public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
-    final int PAGE_COUNT = 3;
-    private String tabTitles[] = new String[] { "Tab1", "Tab2", "Tab3" };
+public class SampleFragmentPagerAdapter extends FragmentStatePagerAdapter {
+    final int PAGE_COUNT = 4;
+    private String tabTitles[] = new String[] { "Latest", "Now Playing", "Popular" ,"Top Rated" };
     public SampleFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
     }
@@ -23,11 +25,13 @@ public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return PageFragment.newInstance(position + 1);
+                return PageFragment.newInstance(position );
             case 1:
-                return PageFragment2.newInstance(position + 1);
+                return PageFragment2.newInstance(position );
             case 2:
-                return PageFragment3.newInstance(position + 1);
+                return PageFragment3.newInstance(position );
+            case 3:
+                return TopratedFragment.newInstance("","");
         }
         return null;
     }
