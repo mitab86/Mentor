@@ -35,15 +35,15 @@
         android:layout_alignParentRight="false"
         android:layout_below="@+id/movieTitle"
         android:padding="3dp"
-        android:text="30-30-30"
+        android:text="Release Date:30-30-30"
         android:textSize="@dimen/actions_textsize"
         android:layout_marginLeft="60dp"
         android:fontFamily="@string/navigation_drawer_open" />
 
     <ImageView
         android:id="@+id/stars"
-        android:layout_width="12dp"
-        android:layout_height="12dp"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
         android:src="@drawable/fav"
         android:layout_below="@+id/movieReleaseDate"
         android:layout_alignLeft="@+id/movieReleaseDate"
@@ -56,30 +56,7 @@
         android:layout_height="wrap_content"
         android:text="8.0"
         android:layout_alignTop="@+id/stars"
-        android:layout_marginLeft="78dp"
-        android:textSize="10dp"
-        android:layout_marginTop="2dp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Votes:"
-        android:textSize="10dp"
-        android:layout_below="@+id/movieReleaseDate"
-        android:layout_toRightOf="@+id/movieRating"
-        android:layout_toEndOf="@+id/stars"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="2dp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="450"
-        android:textSize="8dp"
-        android:layout_below="@+id/movieReleaseDate"
-        android:layout_toRightOf="@+id/movieRating"
-        android:layout_toEndOf="@+id/stars"
-        android:layout_marginLeft="103dp"
-        android:textColor="#fff"
-        android:background="#8AC249"
-        android:padding="2dp" />
+        android:layout_marginLeft="75dp"
+        android:textSize="10dp" />
 
 </RelativeLayout>
