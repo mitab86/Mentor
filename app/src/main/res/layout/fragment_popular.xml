@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.mitab.mentor.Movies.PageFragment3">
+    tools:context="com.example.mitab.mentor.Movies.Pages.Popular.PopularFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
