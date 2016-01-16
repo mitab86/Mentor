@@ -2,20 +2,19 @@ package com.example.mitab.mentor.Movies;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.mitab.mentor.Movies.Pages.PageFragment;
 import com.example.mitab.mentor.Movies.Pages.PageFragment2;
 import com.example.mitab.mentor.Movies.Pages.PageFragment3;
-import com.example.mitab.mentor.Movies.Pages.TopratedFragment;
+import com.example.mitab.mentor.Movies.Pages.TopRated.TopratedFragment;
 
 /**
  * Created by Mitab on 1/10/2016.
  */
 public class SampleFragmentPagerAdapter extends FragmentStatePagerAdapter {
     final int PAGE_COUNT = 4;
-    private String tabTitles[] = new String[] { "Latest", "Now Playing", "Popular" ,"Top Rated" };
+    private String tabTitles[] = new String[] { "Now Playing", "Popular" ,"Top Rated","Upcoming" };
     public SampleFragmentPagerAdapter(FragmentManager fm) {
         super(fm);
     }

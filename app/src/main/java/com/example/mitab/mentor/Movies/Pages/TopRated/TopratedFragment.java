@@ -1,4 +1,4 @@
-package com.example.mitab.mentor.Movies.Pages;
+package com.example.mitab.mentor.Movies.Pages.TopRated;
 
 
 import android.os.Bundle;
@@ -15,6 +15,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.mitab.mentor.Movies.Pages.MyApplication;
+import com.example.mitab.mentor.Movies.Pages.VolleySingleton;
+import com.example.mitab.mentor.Movies.Pages.movie;
 import com.example.mitab.mentor.R;
 
 import org.json.JSONArray;
@@ -81,7 +84,7 @@ public class TopratedFragment extends Fragment {
     }
 
     private void sendJsonRequest(){
-        JsonObjectRequest request=new JsonObjectRequest(Request.Method.GET, getRequestUrl(10), (String)null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request=new JsonObjectRequest(Request.Method.GET, getRequestUrl(1), (String)null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 listMovies=parseJSONResponse(response);
@@ -100,42 +103,94 @@ public class TopratedFragment extends Fragment {
         ArrayList<movie> listMovies=new ArrayList<>();
         if (response==null || response.length()>0){
 
+
+
         try {
                 JSONArray arrayMovies=response.getJSONArray(KEY_MOVIES);
                 for (int i=0;i<arrayMovies.length();i++){
+
+                    long id=-1;
+                    String title="NA";
+                    String poster="NA";
+                    String release="NA";
+                    String overview="NA";
+                    String vote="NA";
+                    String votecount="NA";
+
                     JSONObject currentMovie=arrayMovies.getJSONObject(i);
 
-                    Long id=currentMovie.getLong(KEY_ID);
-                    String title=currentMovie.getString(KEY_TITLE);
-                    String poster=currentMovie.getString(KEY_POSTER_PATH);
-                    String release=currentMovie.getString(KEY_RELEASE_DATE);
-                    String overview=currentMovie.getString(KEY_OVERVIEW);
-                    String vote=currentMovie.getString(KEY_AVERAGE_VOTE);
-                    String votecount=currentMovie.getString(KEY_VOTE_COUNT);
+                    //get the id of current movie
+                    if (currentMovie.has(KEY_ID)&& !currentMovie.isNull(KEY_ID)){
+                        id=currentMovie.getLong(KEY_ID);
+                    }
+
+                    if (currentMovie.has(KEY_TITLE)&& !currentMovie.isNull(KEY_TITLE)){
+                        title=currentMovie.getString(KEY_TITLE);
+                    }
+
+                    if (currentMovie.has(KEY_POSTER_PATH)&& !currentMovie.isNull(KEY_POSTER_PATH)){
+                        poster=currentMovie.getString(KEY_POSTER_PATH);
+                    }
+
+                    if (currentMovie.has(KEY_RELEASE_DATE)&& !currentMovie.isNull(KEY_RELEASE_DATE)){
+                        release=currentMovie.getString(KEY_RELEASE_DATE);
+                    }
+
+                    if (currentMovie.has(KEY_OVERVIEW)&& !currentMovie.isNull(KEY_OVERVIEW)){
+                        overview=currentMovie.getString(KEY_OVERVIEW);
+                    }
+
+                    if (currentMovie.has(KEY_AVERAGE_VOTE)&& !currentMovie.isNull(KEY_AVERAGE_VOTE)){
+                        vote=currentMovie.getString(KEY_AVERAGE_VOTE);
+                    }
+
+                    if (currentMovie.has(KEY_VOTE_COUNT)&& !currentMovie.isNull(KEY_VOTE_COUNT)){
+                        votecount=currentMovie.getString(KEY_VOTE_COUNT);
+                    }
+
+
+
+
+
+
 
                     JSONArray genre=currentMovie.getJSONArray(KEY_GENRE_IDS);
 
+                    if (currentMovie.has(KEY_GENRE_IDS)&& !currentMovie.isNull(KEY_GENRE_IDS)){
+                        for (int j=0;j<genre.length();j++){
+                            try {
+                                String itemInArray=genre.getString(j);
 
-                    for (int j=0;j<genre.length();j++){
-                        try {
-                            String itemInArray=genre.getString(j);
+                            }
+                            catch (JSONException e){
 
-                        }
-                        catch (JSONException e){
-
+                            }
                         }
                     }
+
 
                     movie movie=new movie();
                     movie.setId(id);
                     movie.setTitle(title);
                     movie.setOverview(overview);
                     movie.setAveragevote(vote);
-                    Date date=dateFormat.parse(release);
+                    Date date=null;
+                    try {
+                        date=dateFormat.parse(release);
+                    }
+                    catch (ParseException e){
+
+                    }
+
                     movie.setReleasedate(date);
                     movie.setImage(poster);
+                    movie.setVotecount(votecount);
 
-                    listMovies.add(movie);
+                    if (id!=-1 && !title.equals("NA"))
+                    {
+                        listMovies.add(movie);
+                    }
+
 
                 }
 
@@ -144,8 +199,6 @@ public class TopratedFragment extends Fragment {
         }
         catch (JSONException e){
 
-        } catch (ParseException e) {
-            e.printStackTrace();
         }
     }
         return listMovies;

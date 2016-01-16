@@ -38,6 +38,7 @@ public class MovieFragment extends Fragment {
         PagerSlidingTabStrip tabsStrip = (PagerSlidingTabStrip) v.findViewById(R.id.tabs);
         // Attach the view pager to the tab strip
         tabsStrip.setViewPager(viewPager);
+
         return v;
     }
 

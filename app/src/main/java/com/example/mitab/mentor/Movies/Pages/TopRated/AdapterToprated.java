@@ -1,4 +1,4 @@
-package com.example.mitab.mentor.Movies.Pages;
+package com.example.mitab.mentor.Movies.Pages.TopRated;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,9 +10,13 @@ import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
+import com.example.mitab.mentor.Movies.Pages.VolleySingleton;
+import com.example.mitab.mentor.Movies.Pages.movie;
 import com.example.mitab.mentor.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Mitab on 1/15/2016.
@@ -23,6 +27,7 @@ public class AdapterToprated extends RecyclerView.Adapter<AdapterToprated.ViewHo
     private VolleySingleton volleySingleton;
     private ImageLoader imageLoader;
     private ArrayList<movie> listMovies=new ArrayList<>();
+    private SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
 
     public AdapterToprated(Context context){
         layoutInflater=LayoutInflater.from(context);
@@ -45,10 +50,17 @@ public class AdapterToprated extends RecyclerView.Adapter<AdapterToprated.ViewHo
     public void onBindViewHolder(final ViewHolderToprated holder, int position) {
         movie currentMovie=listMovies.get(position);
         holder.movieTitle.setText(currentMovie.getTitle());
-        holder.movieReleaseDate.setText(currentMovie.getReleasedate().toString());
+        Date movieReleaseDate=currentMovie.getReleasedate();
+        if (movieReleaseDate!=null){
+            String formattedDate=dateFormat.format(movieReleaseDate);
+            holder.movieReleaseDate.setText(formattedDate);
+        }else{
+            holder.movieReleaseDate.setText("NA");
+        }
+
         holder.movieRating.setText(currentMovie.getAveragevote());
         String urlThumnail=currentMovie.getImage();
-        if (urlThumnail!= null){
+        if (!urlThumnail.equals("NA")){
             imageLoader.get(urlThumnail, new ImageLoader.ImageListener() {
                 @Override
                 public void onResponse(ImageLoader.ImageContainer response, boolean isImmediate) {
