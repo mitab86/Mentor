@@ -81,6 +81,7 @@ public class TopratedFragment extends Fragment {
 
         volleySingleton= VolleySingleton.getsInstance();
         requestQueue=volleySingleton.getRequestQueue();
+        System.out.println("helo");
         sendJsonRequest();
 
     }
@@ -223,13 +224,13 @@ public class TopratedFragment extends Fragment {
         // Add the scroll listener
         listMovieHits.addOnScrollListener(new EndlessRecyclerViewScrollListener(new LinearLayoutManager(getActivity())) {
             @Override
-            public void onLoadMore(int page) {
+            public void onLoadMore(int current_page) {
                 // fetch data asynchronously here
-                listMovies.add(null);
-                adapterToprated.notifyItemInserted(listMovies.size() - 1);
-                L.T(getActivity(),"hello");
-                page=page+1;
-                sendJsonRequest();
+                listMovies.addAll(null);
+                int curSize=adapterToprated.getItemCount();
+                adapterToprated.notifyItemRangeChanged(curSize,listMovies.size() + 1);
+                page=current_page;
+                //sendJsonRequest();
 
             }
         });
