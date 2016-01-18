@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +29,7 @@ public class AdapterToprated extends RecyclerView.Adapter<AdapterToprated.ViewHo
     private ImageLoader imageLoader;
     private ArrayList<movie> listMovies=new ArrayList<>();
     private SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
+
 
     public AdapterToprated(Context context){
         layoutInflater=LayoutInflater.from(context);
