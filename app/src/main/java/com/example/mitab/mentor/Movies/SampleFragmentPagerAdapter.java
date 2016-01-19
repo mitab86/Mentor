@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.mitab.mentor.Movies.Pages.PageFragment;
+import com.example.mitab.mentor.Movies.Pages.Playing.NowPlaying;
 import com.example.mitab.mentor.Movies.Pages.Popular.PopularFragment;
 import com.example.mitab.mentor.Movies.Pages.PageFragment3;
 import com.example.mitab.mentor.Movies.Pages.TopRated.TopratedFragment;
@@ -24,7 +24,7 @@ public class SampleFragmentPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return PageFragment.newInstance(position );
+                return NowPlaying.newInstance("","");
             case 1:
                 return PopularFragment.newInstance("","" );
             case 2:

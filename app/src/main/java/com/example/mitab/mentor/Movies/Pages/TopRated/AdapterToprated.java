@@ -1,16 +1,26 @@
 package com.example.mitab.mentor.Movies.Pages.TopRated;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
+import com.example.mitab.mentor.MainActivity;
+import com.example.mitab.mentor.Movies.Pages.L;
 import com.example.mitab.mentor.Movies.Pages.VolleySingleton;
 import com.example.mitab.mentor.Movies.Pages.movie;
 import com.example.mitab.mentor.R;
@@ -22,19 +32,23 @@ import java.util.Date;
 /**
  * Created by Mitab on 1/15/2016.
  */
-public class AdapterToprated extends RecyclerView.Adapter<AdapterToprated.ViewHolderToprated>{
+public class AdapterToprated extends RecyclerView.Adapter<AdapterToprated.ViewHolderToprated> {
 
     private LayoutInflater layoutInflater;
     private VolleySingleton volleySingleton;
     private ImageLoader imageLoader;
-    private ArrayList<movie> listMovies=new ArrayList<>();
+    private ArrayList<movie> listMovies=new ArrayList<movie>();
     private SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
+    private RecyclerView.OnItemTouchListener onItemTouchListener;
+    Context context;
+
 
 
     public AdapterToprated(Context context){
         layoutInflater=LayoutInflater.from(context);
         volleySingleton=VolleySingleton.getsInstance();
         imageLoader=volleySingleton.getImageLoader();
+        this.context = context;
     }
 
     public void setMovieList(ArrayList<movie> listMovies){
@@ -50,7 +64,7 @@ public class AdapterToprated extends RecyclerView.Adapter<AdapterToprated.ViewHo
 
     @Override
     public void onBindViewHolder(final ViewHolderToprated holder, int position) {
-        movie currentMovie=listMovies.get(position);
+        final movie currentMovie=listMovies.get(position);
         holder.movieTitle.setText(currentMovie.getTitle());
         Date movieReleaseDate=currentMovie.getReleasedate();
         if (movieReleaseDate!=null){
@@ -75,6 +89,16 @@ public class AdapterToprated extends RecyclerView.Adapter<AdapterToprated.ViewHo
                 }
             });
         }
+        holder.lnrLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context,Intentpass.class);
+                intent.putExtra("details",currentMovie.getTitle());
+                context.startActivity(intent);
+
+            }
+        });
+
 
     }
 
@@ -89,6 +113,7 @@ public class AdapterToprated extends RecyclerView.Adapter<AdapterToprated.ViewHo
         private TextView movieTitle;
         private TextView movieReleaseDate;
         private TextView movieRating;
+        private RelativeLayout lnrLayout;
 
         public ViewHolderToprated(View itemView) {
             super(itemView);
@@ -96,6 +121,7 @@ public class AdapterToprated extends RecyclerView.Adapter<AdapterToprated.ViewHo
             movieTitle=(TextView) itemView.findViewById(R.id.movieTitle);
             movieReleaseDate=(TextView) itemView.findViewById(R.id.movieReleaseDate);
             movieRating=(TextView) itemView.findViewById(R.id.movieRating);
+            lnrLayout=(RelativeLayout)itemView.findViewById(R.id.lnLayout);
         }
     }
 }

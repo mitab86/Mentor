@@ -1,4 +1,4 @@
-package com.example.mitab.mentor.Movies.Pages.TopRated;
+package com.example.mitab.mentor.Movies.Pages.Playing;
 
 
 import android.os.Bundle;
@@ -15,8 +15,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.example.mitab.mentor.Movies.Pages.L;
 import com.example.mitab.mentor.Movies.Pages.MyApplication;
+import com.example.mitab.mentor.Movies.Pages.TopRated.AdapterToprated;
 import com.example.mitab.mentor.Movies.Pages.VolleySingleton;
 import com.example.mitab.mentor.Movies.Pages.movie;
 import com.example.mitab.mentor.R;
@@ -29,29 +29,26 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import android.os.Handler;
 
 import static com.example.mitab.mentor.Movies.Pages.Keys.EndpointToprated.*;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link TopratedFragment#newInstance} factory method to
+ * Use the {@link PopularFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TopratedFragment extends Fragment {
+public class NowPlaying extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-    public static final String Top_rated="http://api.themoviedb.org/3/movie/top_rated";
+    public static final String Playing="http://api.themoviedb.org/3/movie/now_playing";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    protected Handler handler;
     private VolleySingleton volleySingleton;
     private ImageLoader imageLoader;
-    int page=1;
     private RequestQueue requestQueue;
     private ArrayList<movie> listMovies=new ArrayList<>();
     private SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
@@ -59,13 +56,14 @@ public class TopratedFragment extends Fragment {
     private AdapterToprated adapterToprated;
 
 
-    public TopratedFragment() {
+    public NowPlaying() {
         // Required empty public constructor
     }
 
+
     // TODO: Rename and change types and number of parameters
-    public static TopratedFragment newInstance(String param1, String param2) {
-        TopratedFragment fragment = new TopratedFragment();
+    public static NowPlaying newInstance(String param1, String param2) {
+        NowPlaying fragment = new NowPlaying();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -80,15 +78,12 @@ public class TopratedFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
         volleySingleton= VolleySingleton.getsInstance();
         requestQueue=volleySingleton.getRequestQueue();
-
         sendJsonRequest();
     }
-
     private void sendJsonRequest(){
-        JsonObjectRequest request=new JsonObjectRequest(Request.Method.GET, getRequestUrl(page), (String)null, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request=new JsonObjectRequest(Request.Method.GET, getRequestUrl(1), (String)null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 listMovies=parseJSONResponse(response);
@@ -207,67 +202,21 @@ public class TopratedFragment extends Fragment {
         }
         return listMovies;
     }
-
     public static String getRequestUrl(int page){
-        return Top_rated +"?api_key="+ MyApplication.API_KEY + "&page="+page;
+        return Playing +"?api_key="+ MyApplication.API_KEY + "&page="+page;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_toprated, container, false);
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        handler=new Handler();
+        View view=inflater.inflate(R.layout.fragment_popular, container, false);
         listMovieHits=(RecyclerView) view.findViewById(R.id.listMovieHits);
-        listMovieHits.setLayoutManager(linearLayoutManager);
-
+        listMovieHits.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapterToprated=new AdapterToprated(getActivity());
         listMovieHits.setAdapter(adapterToprated);
         sendJsonRequest();
-        // Add the scroll listener
-//        listMovieHits.addOnScrollListener(new EndlessRecyclerViewScrollListener(linearLayoutManager) {
-//            @Override
-//            public void onLoadMore(int current_page) {
-//                // fetch data asynchronously here
-//                listMovies.add(null);
-//                adapterToprated.notifyItemInserted(listMovies.size());
-//
-//                handler.postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        listMovies.remove(listMovies.size() - 1);
-//                        adapterToprated.notifyItemRemoved(listMovies.size());
-//                        //add items one by one
-//
-//                        for (int i = 0; i < 5; i++) {
-//                            page=page+1;
-//                            listMovies.add(new movie());
-//                            sendJsonRequest();
-//                            adapterToprated.notifyItemInserted(listMovies.size());
-//
-//
-//                        }
-//                            //adapterToprated.setMovieList();
-////                    adapterToprated.setMovieList(listMovies);
-////                    adapterToprated.notifyDataSetChanged();
-//
-//
-//                }
-//            }
-//
-//            ,2000);
-//
-////                int curSize = adapterToprated.getItemCount();
-////                adapterToprated.notifyItemRangeChanged(curSize, listMovies.size() + 1);
-////                page = current_page;
-//                //sendJsonRequest();
-//
-//            }
-//        });
         // Inflate the layout for this fragment
         return view;
     }
-
 
 }
